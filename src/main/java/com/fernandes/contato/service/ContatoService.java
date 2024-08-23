@@ -1,5 +1,7 @@
 package com.fernandes.contato.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,4 +18,9 @@ public class ContatoService {
 		return contatoRepository.save(contato);
 	}
 
+	public List<Contato> findAll() {
+		List<Contato> contatos = contatoRepository.findAll();
+		
+		return contatos;
+	}
 }
