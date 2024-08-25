@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -40,5 +41,12 @@ public class ContatoController {
 		Contato contato = contatoService.findById(id);
 		
 		return ResponseEntity.ok().body(contato);
+	}
+	
+	@PutMapping(value = "/{id}")
+	public ResponseEntity<Contato> update(@RequestBody Contato contato, @PathVariable Integer id) {
+		Contato contatoAtualizado = contatoService.update(contato, id);
+		
+		return ResponseEntity.ok().body(contatoAtualizado);
 	}
 }

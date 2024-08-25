@@ -33,4 +33,21 @@ public class ContatoService {
 				
 		return contato.orElseThrow(() -> new ContatoNotFoundException(id));
 	}
+	
+	public Contato update(Contato contato, Integer id) {
+		Contato buscarContato = findById(id);
+		
+		Contato contatoAtualizado = autalizarContato(contato, buscarContato);
+
+		return contatoRepository.save(contatoAtualizado);
+	}
+	
+	public Contato autalizarContato(Contato contatoAntigo, Contato contatoNovo) {
+		contatoNovo.setNome(contatoAntigo.getNome());
+		contatoNovo.setCelular(contatoAntigo.getCelular());
+		contatoNovo.setTipo(contatoAntigo.getTipo());
+		contatoNovo.setCpf(contatoAntigo.getCpf());
+		
+		return contatoNovo;
+	}
 }
