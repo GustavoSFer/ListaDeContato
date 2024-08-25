@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.fernandes.contato.entities.Contato;
 import com.fernandes.contato.repository.IContato;
 import com.fernandes.contato.service.exception.ContatoNotFoundException;
+import com.fernandes.contato.service.exception.DadosEssencialException;
 
 @Service
 public class ContatoService {
@@ -36,12 +37,19 @@ public class ContatoService {
 	
 	public Contato update(Contato contato, Integer id) {
 		Contato buscarContato = findById(id);
-		
+		verificaDadosEssencial(contato);
 		Contato contatoAtualizado = autalizarContato(contato, buscarContato);
 
 		return contatoRepository.save(contatoAtualizado);
 	}
 	
+	private void verificaDadosEssencial(Contato contato) {
+		if (contato.getNome().isEmpty() || contato.getCpf().isEmpty()) {
+			throw new DadosEssencialException();
+		}
+		
+	}
+
 	public Contato autalizarContato(Contato contatoAntigo, Contato contatoNovo) {
 		contatoNovo.setNome(contatoAntigo.getNome());
 		contatoNovo.setCelular(contatoAntigo.getCelular());
