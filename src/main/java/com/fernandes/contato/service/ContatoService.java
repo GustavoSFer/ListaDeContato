@@ -43,6 +43,8 @@ public class ContatoService {
 		return contatoRepository.save(contatoAtualizado);
 	}
 	
+	// https://www.baeldung.com/spring-boot-bean-validation
+	// Fazer essa validação para aprender!!!
 	private void verificaDadosEssencial(Contato contato) {
 		if (contato.getNome().isEmpty() || contato.getCpf().isEmpty()) {
 			throw new DadosEssencialException();
