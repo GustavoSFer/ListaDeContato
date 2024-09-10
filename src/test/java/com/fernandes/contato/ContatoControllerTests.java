@@ -21,4 +21,14 @@ public class ContatoControllerTests {
 		.andExpect(MockMvcResultMatchers.status().isOk());
 	}
 
+	@Test
+	void DeveRetornarStatusOkAndBody() throws Exception {
+		mockMvc.perform(MockMvcRequestBuilders.get("/Contato"))
+		.andExpect(MockMvcResultMatchers.status().isOk())
+		.andExpect(MockMvcResultMatchers.jsonPath("$[0].id").value("1"))
+		.andExpect(MockMvcResultMatchers.jsonPath("$[0].nome").value("Gustavo Fernandes"))
+		.andExpect(MockMvcResultMatchers.jsonPath("$[0].cpf").value("36427994859"))
+		.andExpect(MockMvcResultMatchers.jsonPath("$[0].celular").value("11958951333"))
+		.andExpect(MockMvcResultMatchers.jsonPath("$[0].tipo").value("Comercial"));
+	}
 }
