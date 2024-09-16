@@ -1,6 +1,7 @@
 package com.fernandes.contato;
 
 import org.junit.jupiter.api.DisplayName;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -34,5 +35,17 @@ public class ContatoControllerTests {
 		.andExpect(MockMvcResultMatchers.jsonPath("$[0].cpf").value("36427994859"))
 		.andExpect(MockMvcResultMatchers.jsonPath("$[0].celular").value("11958951333"))
 		.andExpect(MockMvcResultMatchers.jsonPath("$[0].tipo").value("Comercial"));
+	}
+	
+	@Test
+	@DisplayName("Teste - GET Buscando o id 1")
+	void DeveRotornarOIDUm() throws Exception {
+		mockMvc.perform(MockMvcRequestBuilders.get("/Contato/1"))
+		.andExpect(MockMvcResultMatchers.status().isOk())
+		.andExpect(MockMvcResultMatchers.jsonPath("$.id").value("1"))
+		.andExpect(MockMvcResultMatchers.jsonPath("$.nome").value("Gustavo Fernandes"))
+		.andExpect(MockMvcResultMatchers.jsonPath("$.cpf").value("36427994859"))
+		.andExpect(MockMvcResultMatchers.jsonPath("$.celular").value("11958951333"))
+		.andExpect(MockMvcResultMatchers.jsonPath("$.tipo").value("Comercial"));
 	}
 }
