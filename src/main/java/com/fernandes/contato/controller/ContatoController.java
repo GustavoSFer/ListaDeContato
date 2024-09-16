@@ -1,6 +1,7 @@
 package com.fernandes.contato.controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fernandes.contato.dto.ContatoDto;
 import com.fernandes.contato.entities.Contato;
 import com.fernandes.contato.service.ContatoService;
 
@@ -30,10 +32,11 @@ public class ContatoController {
 	}
 
 	@GetMapping
-	public ResponseEntity<List<Contato>> findAll() {
+	public ResponseEntity<List<ContatoDto>> findAll() {
 		List<Contato> contatos = contatoService.findAll();
+		List<ContatoDto> contatosDto = contatos.stream().map(obj -> new ContatoDto(obj)).collect(Collectors.toList());
 		
-		return ResponseEntity.ok().body(contatos);
+		return ResponseEntity.ok().body(contatosDto);
 	}
 	
 	@GetMapping(value = "/{id}")
