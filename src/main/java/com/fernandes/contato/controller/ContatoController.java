@@ -40,10 +40,11 @@ public class ContatoController {
 	}
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Contato> findById(@PathVariable Integer id) {
+	public ResponseEntity<ContatoDto> findById(@PathVariable Integer id) {
 		Contato contato = contatoService.findById(id);
+		ContatoDto contatoDto = new ContatoDto(contato);
 		
-		return ResponseEntity.ok().body(contato);
+		return ResponseEntity.ok().body(contatoDto);
 	}
 	
 	@PutMapping(value = "/{id}")
