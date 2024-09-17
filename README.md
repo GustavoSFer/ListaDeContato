@@ -2,7 +2,7 @@
 
 ## Criação de uma API de contatos, onde você pode:
 <ul>
-  <li>Listar todos os contatis</li>
+  <li>Listar todos os contatos</li>
   <li>Listar um contato especifico pelo seu id</li>
   <li>Criar um novo contato</li>
   <li>Editar um contato</li>
@@ -16,7 +16,7 @@
 <ul>
   <li>Configuração do banco de dados MySQL</li>
   <li>Criar a classe 'Contato'</li>
-  <li>Criar ps modulos Controller, Service, Repository</li>
+  <li>Criar os modulos Controller, Service, Repository</li>
   <li>Criar a interface Repository</li>
   <li>Criar um novo contato</li>
   <li>Listar todos os contatos</li>
